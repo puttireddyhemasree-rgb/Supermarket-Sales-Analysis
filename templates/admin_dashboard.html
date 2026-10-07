@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 25px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .logout {
+            background-color: #e74c3c;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Supermarket Sales Analysis</h1>
+
+    <p>Admin Dashboard</p>
+
+</header>
+
+
+<div class="container">
+
+    <h2>
+        Welcome, {{ admin_username }}! 🤗
+    </h2>
+
+    <p>
+        You are logged in as an administrator.
+    </p>
+
+
+    <a href="/admin/products" class="button">📦 Manage Products</a>
+
+
+    <a href="/admin/customers" class="button">
+    👥 View Customers
+</a>
+
+
+    <a href="/admin/orders" class="button">
+    🛒 Manage Orders
+</a>
+
+
+    <a href="/admin/analytics" class="button">
+    📊 Analytics
+</a>
+
+
+    <br>
+
+
+    <a href="/admin/logout" class="button logout">
+        Logout
+    </a>
+
+</div>
+
+</body>
+
+</html>

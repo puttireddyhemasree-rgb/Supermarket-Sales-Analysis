@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products - Supermarket Sales Analysis</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 16px;
+        }
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
+        .container h1 {
+            color: #2c3e50;
+        }
+        .filter-box {
+            background-color: white;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .filter-box input,
+        .filter-box select {
+            padding: 12px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+        .search-button {
+            padding: 12px 20px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .clear-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #95a5a6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .product-card {
+            background-color: white;
+            width: 250px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .product-card h2 {
+            color: #2c3e50;
+            font-size: 20px;
+        }
+        .product-card p {
+            color: #555;
+            margin: 10px 0;
+        }
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #27ae60 !important;
+        }
+        .rating {
+            color: #f39c12 !important;
+        }
+        .stock {
+            color: #2980b9 !important;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 18px;
+            background-color: #3498db;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .result-count {
+            margin-top: 20px;
+            color: #555;
+            font-size: 16px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Supermarket Sales Analysis</h1>
+        <p>Our Products</p>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="#">Categories</a>
+        <a href="#">Login</a>
+    </nav>
+    <div class="container">
+        <h1>Available Products</h1>
+        <p>
+            Search and filter products available in our supermarket.
+        </p>
+        <div class="filter-box">
+            <form action="/products" method="GET">
+              <input
+                    type="text"
+                    name="search"
+                    placeholder="Search product..."
+                    value="{{ search }}"
+                >
+                <select name="category">
+                    <option value="">
+                        All Categories
+                    </option>
+                    {% for category in categories %}
+                    <option
+                        value="{{ category['product_line'] }}"
+                        {% if selected_category == category['product_line'] %}
+                        selected
+                        {% endif %}
+                    >
+               {{ category['product_line'] }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <button
+                    type="submit"
+                    class="search-button"
+               >
+                    🔍 Search
+                </button>
+                <a
+                    href="/products"
+                    class="clear-button"
+                >
+                    Clear
+                </a>
+            </form>
+        </div>
+        <!-- Result Count -->
+        <div class="result-count">
+            <strong>
+                {{ products|length }}
+            </strong>
+            product(s) found.
+        </div>
+        <!-- Products -->
+        <div class="products">
+            {% for product in products %}
+            <div class="product-card">
+                <h2>
+                    {{ product["product_name"] }}
+                </h2>
+                <p>
+                    <strong>Category:</strong>
+                    {{ product["product_line"] }}
+                </p>
+                <p class="price">
+                    ₹{{ "%.2f"|format(product["unit_price"]) }}
+                </p>
+                <p class="stock">
+                    <strong>Stock:</strong>
+                    {{ product["stock"] }}
+                </p>
+                <p class="rating">
+                    ⭐ {{ "%.1f"|format(product["rating"]) }}
+                </p>
+                <a
+                    href="/product/{{ product['product_id'] }}"
+    class="button"
+>
+    View Product
+</a>
+            </div>
+            {% else %}
+            <div class="product-card">
+                <h2>No Products Found</h2>
+                <p>
+                   Try another search or category.
+               </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer>
+        <p>
+            Supermarket Sales Analysis |
+            Data Analytics Project
+        </p>
+    </footer>
+</body>
+</html>

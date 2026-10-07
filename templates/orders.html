@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Orders</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 85%;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .status {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Supermarket Sales Analysis</h1>
+
+    <p>My Orders</p>
+
+</header>
+
+
+<div class="container">
+
+    <h2>📦 My Order History</h2>
+
+
+    {% if orders %}
+
+    <table>
+
+        <tr>
+
+            <th>Order ID</th>
+
+            <th>Order Date</th>
+
+            <th>Total Amount</th>
+
+            <th>Payment Method</th>
+
+            <th>Status</th>
+
+        </tr>
+
+
+        {% for order in orders %}
+
+        <tr>
+
+            <td>
+                #{{ order["order_id"] }}
+            </td>
+
+            <td>
+                {{ order["order_date"] }}
+            </td>
+
+            <td>
+                ₹{{ "%.2f"|format(order["total_amount"]) }}
+            </td>
+
+            <td>
+                {{ order["payment_method"] }}
+            </td>
+
+            <td class="status">
+                {{ order["order_status"] }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+
+    {% else %}
+
+    <div class="empty">
+
+        <h3>No orders found 📦</h3>
+
+        <p>
+            You have not placed any orders yet.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <a href="/products" class="button">
+        🛍️ Continue Shopping
+    </a>
+
+
+    <a href="/customer-dashboard" class="button">
+        ← Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

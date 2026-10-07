@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Stock</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            padding: 30px;
+        }
+
+        .container {
+            width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📦 Update Stock</h1>
+
+    <p>
+        <strong>{{ product['product_name'] }}</strong>
+    </p>
+
+    <p>
+        Current Stock: {{ product['stock'] }}
+    </p>
+
+    <form method="POST">
+
+        <label>New Stock Quantity</label>
+
+        <input
+            type="number"
+            name="stock"
+            min="0"
+            value="{{ product['stock'] }}"
+            required
+        >
+
+        <button type="submit">
+            Update Stock
+        </button>
+
+    </form>
+
+    <a href="/admin/products" class="back">
+        ⬅ Back to Manage Products
+    </a>
+
+</div>
+
+</body>
+</html>

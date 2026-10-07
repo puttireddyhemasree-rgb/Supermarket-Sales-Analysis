@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #125ca1;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+
+        .message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>➕ Add Product</h1>
+
+    {% if message %}
+        <p class="message">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST">
+
+        <label>Product Name</label>
+        <input type="text" name="product_name" required>
+
+        <label>Product Line / Category</label>
+        <input type="text" name="product_line" required>
+
+        <label>Unit Price</label>
+        <input type="number" name="unit_price" step="0.01" min="0" required>
+
+        <label>Stock</label>
+        <input type="number" name="stock" min="0" required>
+
+        <label>Description</label>
+        <textarea name="description"></textarea>
+
+        <label>Rating</label>
+        <input type="number" name="rating" step="0.1" min="0" max="10" value="0">
+
+        <button type="submit">Add Product</button>
+
+    </form>
+
+    <a href="/admin/products" class="back">
+        ⬅ Back to Manage Products
+    </a>
+
+</div>
+
+</body>
+</html>

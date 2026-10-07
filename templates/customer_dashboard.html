@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Customer Dashboard</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 70%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .logout {
+            background-color: #e74c3c;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Supermarket Sales Analysis</h1>
+
+    <p>Customer Dashboard</p>
+
+</header>
+
+
+<div class="container">
+
+    <h2>
+        Welcome, {{ customer_name }}! 🤗
+    </h2>
+
+    <p>
+        You have successfully logged in.
+    </p>
+    <a href="/products" class="button">
+        view products
+    </a>
+  <a href="/orders" class="button">
+    📦 My Orders
+</a>
+
+    <a href="/logout" class="button logout">
+        Logout
+    </a>
+
+</div>
+
+</body>
+
+</html>
